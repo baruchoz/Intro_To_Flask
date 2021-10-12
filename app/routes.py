@@ -16,4 +16,3 @@ def test():
     title = 'Coding Temple Products'
     products = ['apple', 'orange', 'banana', 'peach']
     return render_template('products.html', title=title, products=products)
-
