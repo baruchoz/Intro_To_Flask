@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template
+from app.forms import UserInfoForm
 
 
 # will return index.html file function file in our templates folder
@@ -16,3 +17,16 @@ def test():
     title = 'Coding Temple Products'
     products = ['apple', 'orange', 'banana', 'peach']
     return render_template('products.html', title=title, products=products)
+
+
+@app.route('/register', methods=["GET", 'POST'])
+def register():
+    register_form = UserInfoForm()
+    if register_form.validate_on_submit():
+        print('Hello this form has been submitted correctly')
+        username = register_form.username.data
+        email = register_form.email.data
+        password = register_form.password.data
+        print(username, email, password)
+        
+    return render_template('register.html', form=register_form)
